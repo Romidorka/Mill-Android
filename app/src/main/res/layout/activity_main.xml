@@ -15,39 +15,39 @@
         <TextView
             android:id="@+id/title1"
             android:layout_width="match_parent"
-            android:layout_height="90sp"
+            android:layout_height="90dp"
             android:text="@string/title"
-            android:textSize="80sp"
+            android:textSize="80dp"
             android:gravity="center"
             android:fontFamily="sans-serif-medium"
             android:layout_marginTop="100sp"/>
 
         <Button
             android:id="@+id/play_btn"
-            android:layout_width="260sp"
-            android:layout_height="75sp"
+            android:layout_width="260dp"
+            android:layout_height="75dp"
             android:text="@string/play_btn"
-            android:textSize="35sp"
+            android:textSize="35dp"
             android:layout_gravity="center"
-            android:layout_marginTop="140sp"/>
+            android:layout_marginTop="140dp"/>
 
         <Button
             android:id="@+id/about_btn"
-            android:layout_width="260sp"
-            android:layout_height="75sp"
+            android:layout_width="260dp"
+            android:layout_height="75dp"
             android:text="@string/about_btn"
-            android:textSize="35sp"
+            android:textSize="35dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20sp"/>
+            android:layout_marginTop="20dp"/>
 
         <Button
             android:id="@+id/exit_btn"
-            android:layout_width="260sp"
-            android:layout_height="75sp"
+            android:layout_width="260dp"
+            android:layout_height="75dp"
             android:text="@string/exit_btn"
-            android:textSize="35sp"
+            android:textSize="35dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20sp"/>
+            android:layout_marginTop="20dp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

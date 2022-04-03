@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/about_text"
                 android:textSize="25sp"
-                android:layout_marginHorizontal="25sp"/>
+                android:layout_marginHorizontal="25dp"/>
         </ScrollView>
 
     </LinearLayout>

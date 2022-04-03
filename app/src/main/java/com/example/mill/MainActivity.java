@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         Button about_btn = (Button) findViewById(R.id.about_btn);
         Button exit_btn = (Button) findViewById(R.id.exit_btn);
 
+        System.out.println("============================================================================================================");
+        System.out.println((float) getResources().getDisplayMetrics().xdpi);
+
         play_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
