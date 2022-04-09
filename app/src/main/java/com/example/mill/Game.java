@@ -40,10 +40,13 @@ public class Game {
             board.check_mills(board.cordsToIndex(cords2));
             board.mustKill=true;
             whose_turn = Board9.opponent(whose_turn);
+            System.out.println("+++ NEW MILL APPEARED +++");
         }else{
             board.check_mills(board.cordsToIndex(cords1));
             board.check_mills(board.cordsToIndex(cords2));
         }
+        System.out.println("mustKill: " + board.mustKill);
+        System.out.println("newMill:  " + board.new_mill_cords);
     }
 
     boolean needSecondCords(String cords){

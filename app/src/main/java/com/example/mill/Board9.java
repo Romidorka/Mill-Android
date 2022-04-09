@@ -146,18 +146,21 @@ public class Board9 {
                 if(in_mill(n[i])) return true;
             }
         }
+        if(in_mill(index)) return true;
         return false;
     }
 
     private boolean in_mill(int index){ // Является ли точка центром мельницы
         int[] n = get_neighbors(index);
         if(n[0]!=-1 && n[1]!=-1) {
-            if (board[n[0]] == board[n[1]] && board[n[0]] == board[index] && is_mill[n[0]] != board[n[0]]) {
+            if (board[n[0]] == board[n[1]] && board[n[0]] == board[index] && is_mill[n[0]] != board[n[0]] && board[n[0]] != 0) {
+                new_mill_cords = index;
                 return true;
             }
         }
         if(n[2]!=-1 && n[3]!=-1) {
-            if (board[n[2]] == board[n[3]] && board[n[2]] == board[index] && is_mill[n[2]] != board[n[2]]) {
+            if (board[n[2]] == board[n[3]] && board[n[2]] == board[index] && is_mill[n[2]] != board[n[2]] && board[n[2]] != 0) {
+                new_mill_cords = index;
                 return true;
             }
         }
@@ -168,7 +171,7 @@ public class Board9 {
         int[] n = get_neighbors(index);
 
         if(n[0]!=-1 && n[1]!=-1) {
-            if (board[n[0]] == board[n[1]] && board[n[0]] == board[index]) {
+            if (board[n[0]] == board[n[1]] && board[n[0]] == board[index] && board[n[0]] != 0) {
                 is_mill[n[0]] = board[n[0]];
                 is_mill[n[1]] = board[n[0]];
                 is_mill[index] = board[n[0]];
@@ -179,8 +182,8 @@ public class Board9 {
                 is_mill[index] = 0;
             }
         }
-        if(n[2]!=-1 && n[3]!=-1 && n[0]!=-1) {
-            if (board[n[2]] == board[n[3]] && board[n[2]] == board[index]) {
+        if(n[2]!=-1 && n[3]!=-1) {
+            if (board[n[2]] == board[n[3]] && board[n[2]] == board[index] && board[n[0]] != 0) {
                 is_mill[n[2]] = board[n[0]];
                 is_mill[n[3]] = board[n[0]];
                 is_mill[index] = board[n[0]];
@@ -253,7 +256,7 @@ public class Board9 {
     public int touchToIndex(float x, float y){
         for (int i=0;i<canvasCords.length;i++){
 //            System.out.println("X: " + (canvasCords[i][0]-x-60) + "   Y: "+ (canvasCords[i][1]-y));
-            if(Math.abs(canvasCords[i][0]-x-60)<=30 && Math.abs(canvasCords[i][1]-y)<=30) {
+            if(Math.abs(canvasCords[i][0]-x-60)<=75 && Math.abs(canvasCords[i][1]-y)<=30) {
                 return i;
             }
         }
