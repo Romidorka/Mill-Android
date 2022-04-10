@@ -30,6 +30,7 @@ public class MyCanvas extends View{
 
     public MyCanvas(Context context, Board9 board, Rules rules, Game game) {
         super(context);
+        super.setBackgroundResource(R.drawable.background_gradient);
         this.board=board;
         this.rules=rules;
         this.game=game;

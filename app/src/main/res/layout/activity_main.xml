@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/background_gradient">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,36 +19,43 @@
             android:layout_height="90dp"
             android:text="@string/title"
             android:textSize="80dp"
+            android:textColor="#9763e1"
             android:gravity="center"
             android:fontFamily="sans-serif-medium"
             android:layout_marginTop="100sp"/>
 
-        <Button
+        <android.widget.Button
             android:id="@+id/play_btn"
             android:layout_width="260dp"
             android:layout_height="75dp"
             android:text="@string/play_btn"
             android:textSize="35dp"
             android:layout_gravity="center"
-            android:layout_marginTop="140dp"/>
+            android:layout_marginTop="140dp"
+            android:background="@drawable/button_gradient"
+            android:textColor="#DFDFDF"/>
 
-        <Button
+        <android.widget.Button
             android:id="@+id/about_btn"
             android:layout_width="260dp"
             android:layout_height="75dp"
             android:text="@string/about_btn"
             android:textSize="35dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_gradient"
+            android:textColor="#DFDFDF"/>
 
-        <Button
+        <android.widget.Button
             android:id="@+id/exit_btn"
             android:layout_width="260dp"
             android:layout_height="75dp"
+            android:background="@drawable/button_gradient"
+            android:textColor="#DFDFDF"
             android:text="@string/exit_btn"
             android:textSize="35dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp" />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

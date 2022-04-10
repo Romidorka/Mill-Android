@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.3890625" />
+        <entry key="app/src/main/res/drawable/background_about.xml" value="0.3065" />
+        <entry key="app/src/main/res/drawable/background_gradient.xml" value="0.3065" />
+        <entry key="app/src/main/res/drawable/button_gradient.xml" value="0.3065" />
         <entry key="app/src/main/res/layout/activity_about.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_nine_mens_morris.xml" value="0.1859375" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.194" />
       </map>
     </option>
   </component>
