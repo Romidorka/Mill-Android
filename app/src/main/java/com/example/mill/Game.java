@@ -4,7 +4,7 @@ public class Game {
     Board9 board;
     Rules rules;
 
-    private int whose_turn=1;
+    public int whose_turn=1;
 
     Game(Board9 board, Rules rules){
         this.board=board;

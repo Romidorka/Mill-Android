@@ -1,6 +1,7 @@
 package com.example.mill;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.graphics.Paint;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.Arrays;
 
@@ -21,6 +23,7 @@ public class MyCanvas extends View{
     private Rules rules;
     private Game game;
     private Paint paint;
+    private Button restart_btn;
     String cords1="";
     String cords2="";
     float posX;
@@ -104,12 +107,53 @@ public class MyCanvas extends View{
         }
     }
 
+    void drawRestartButton( Canvas canvas){
+        Bitmap bitmapSrc = BitmapFactory.decodeResource(getResources(), R.drawable.restart);
+        Matrix matrix = new Matrix();
+
+        int width  = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int height = Resources.getSystem().getDisplayMetrics().heightPixels;
+        Bitmap bitmap;
+        int croppedWidth = Math.min(width, height);
+
+        if (croppedWidth >= 128) {
+            bitmap = Bitmap.createScaledBitmap(bitmapSrc, 128, 128, false);
+        } else {
+            bitmap = Bitmap.createScaledBitmap(bitmapSrc, croppedWidth-100, croppedWidth-100, false);
+        }
+        float x = (width - bitmap.getWidth())/2;
+        float y = (height - bitmap.getHeight())/4+245;
+        board.restartButtonCords[0] = (width - bitmap.getWidth())/2;
+        board.restartButtonCords[1] = (height - bitmap.getHeight())/4+245;
+
+                canvas.drawBitmap(bitmap, dpToPixel(x), dpToPixel(y), paint);
+    }
+
+    void check_win(){
+        if(rules.is_win(1)){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+            alertDialogBuilder.setMessage("First player won!");
+            alertDialogBuilder.setCancelable(false);
+            alertDialogBuilder.show();
+        }else if(rules.is_win(2)){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+            alertDialogBuilder.setMessage("First player won!");
+            alertDialogBuilder.setCancelable(false);
+            alertDialogBuilder.show();
+        }
+    }
+
+
+
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         paint = new Paint();
+        int width  = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int height = Resources.getSystem().getDisplayMetrics().heightPixels;
         float scale = (float) (float) getResources().getDisplayMetrics().scaledDensity/2;
+
 
         drawBoard9(canvas);
         System.out.println("X: " + dpToPixel(posX));
@@ -117,6 +161,7 @@ public class MyCanvas extends View{
         for(int i=0;i<board.board.length;i++){
             drawDot(pixelsToDp(board.canvasCords[i][0]-60),pixelsToDp(board.canvasCords[i][1]), board.board[i], canvas);
         }
+        drawRestartButton(canvas);
 
     }
 
@@ -124,6 +169,12 @@ public class MyCanvas extends View{
     public boolean onTouchEvent(MotionEvent event){
         posX = pixelsToDp(event.getX() - zeroX);
         posY = pixelsToDp(event.getY() - zeroY);
+
+        if(board.restartButtonCalc(pixelsToDp(posX), pixelsToDp(posY))){
+            board.restart();
+            invalidate();
+            return super.onTouchEvent(event);
+        }
 
         int index = board.touchToIndex(dpToPixel(posX), dpToPixel(posY));
         System.out.println("==================================");
@@ -156,6 +207,7 @@ public class MyCanvas extends View{
         System.out.println(Arrays.toString(board.board));
         System.out.println("==================================");
         invalidate();
+        check_win();
         return super.onTouchEvent(event);
     }
 

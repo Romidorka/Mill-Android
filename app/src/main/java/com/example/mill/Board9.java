@@ -11,6 +11,10 @@ package com.example.mill;
  */
 
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import java.util.Arrays;
 
 public class Board9 {
@@ -21,6 +25,7 @@ public class Board9 {
     int[][] canvasCords;
     int[] is_mill;
     int[][] neighbors;
+    float[] restartButtonCords = {0, 0};
 
     int phase = PHASE_PLACING;
     int[] died_dots = {0, 0};
@@ -86,6 +91,16 @@ public class Board9 {
         canvasCords[21]= new int[]{60, 595};
         canvasCords[22]= new int[]{356, 595};
         canvasCords[23]= new int[]{646, 595};
+    }
+
+    public void restart(){
+        Arrays.fill(board, 0);
+        Arrays.fill(is_mill, 0);
+        Arrays.fill(died_dots, 0);
+        Arrays.fill(placed_dots, 0);
+        phase = PHASE_PLACING;
+        new_mill_cords = -1;
+        mustKill = false;
 
     }
 
@@ -100,8 +115,11 @@ public class Board9 {
     public void place(int player, String cords){
         int index = cordsToIndex(cords);
 
+        System.out.println(player);
         board[index] = (byte)player;
+        System.out.println(Arrays.toString(placed_dots));
         placed_dots[player-1]+=1;
+        System.out.println(Arrays.toString(placed_dots));
 
         if(placed_dots[0] == men_count && placed_dots[1] == men_count){
             phase = PHASE_MOVING;
@@ -256,11 +274,40 @@ public class Board9 {
     public int touchToIndex(float x, float y){
         for (int i=0;i<canvasCords.length;i++){
 //            System.out.println("X: " + (canvasCords[i][0]-x-60) + "   Y: "+ (canvasCords[i][1]-y));
-            if(Math.abs(canvasCords[i][0]-x-60)<=75 && Math.abs(canvasCords[i][1]-y)<=30) {
+            if(Math.abs(canvasCords[i][0]-x-60)<=75 && Math.abs(canvasCords[i][1]-y)<=75) {
                 return i;
             }
         }
         return -1;
+    }
+
+    public boolean restartButtonCalc(float x, float y){
+        System.out.println("==========  RESTART  ==========");
+        System.out.println("X: " + Math.abs(restartButtonCords[0]-x-60));
+        System.out.println("Y: " + Math.abs(restartButtonCords[1]-y));
+        if(Math.abs(restartButtonCords[0]-x-60)<=75 && Math.abs(restartButtonCords[1]-y)<=75) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    void setRestartButtonCords(){
+        Bitmap bitmapSrc = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.restart);
+        int width  = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int height = Resources.getSystem().getDisplayMetrics().heightPixels;
+        Bitmap bitmap;
+        int croppedWidth = Math.min(width, height);
+
+        if (croppedWidth >= 128) {
+            bitmap = Bitmap.createScaledBitmap(bitmapSrc, 128, 128, false);
+        } else {
+            bitmap = Bitmap.createScaledBitmap(bitmapSrc, croppedWidth-100, croppedWidth-100, false);
+        }
+        float x = (width - bitmap.getWidth())/2;
+        float y = (height - bitmap.getHeight())/4+245;
+        restartButtonCords[0] = (width - bitmap.getWidth())/2;
+        restartButtonCords[1] = (height - bitmap.getHeight())/4+245;
     }
 
     public void randomize_board(){

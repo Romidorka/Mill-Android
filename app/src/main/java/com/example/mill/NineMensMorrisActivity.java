@@ -18,5 +18,7 @@ public class NineMensMorrisActivity extends AppCompatActivity {
         game = new Game(board, rules);
         myCanvas = new MyCanvas(this, board, rules, game);
         setContentView(myCanvas);
+
+
     }
 }

@@ -5,11 +5,10 @@
             android:shape="rectangle">
             <gradient
                 android:type="linear"
-                android:startColor="#A170E6"
-                android:endColor="#5A11C1"
+                android:startColor="#ffc172"
+                android:endColor="#e1aa64"
                 android:angle="315"
                 />
-
             <corners android:radius="10dp" />
         </shape>
     </item>
