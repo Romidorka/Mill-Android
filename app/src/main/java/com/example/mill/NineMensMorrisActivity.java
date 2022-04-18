@@ -13,12 +13,11 @@ public class NineMensMorrisActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        board = new Board9();
+        board = new Board9(getResources(), this);
         rules = new NineMensMorris(board);
         game = new Game(board, rules);
         myCanvas = new MyCanvas(this, board, rules, game);
+        board.setRestartButtonCords();
         setContentView(myCanvas);
-
-
     }
 }

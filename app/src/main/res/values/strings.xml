@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mill</string>
+    <string name="app_name">Мельница</string>
     <string name="play_btn">play</string>
     <string name="about_btn">rules</string>
     <string name="exit_btn">exit</string>

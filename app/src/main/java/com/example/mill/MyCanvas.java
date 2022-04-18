@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.icu.number.NumberFormatter;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
@@ -123,10 +124,10 @@ public class MyCanvas extends View{
         }
         float x = (width - bitmap.getWidth())/2;
         float y = (height - bitmap.getHeight())/4+245;
-        board.restartButtonCords[0] = (width - bitmap.getWidth())/2;
-        board.restartButtonCords[1] = (height - bitmap.getHeight())/4+245;
+        board.restartButtonCords[0] = x;
+        board.restartButtonCords[1] = y;
 
-                canvas.drawBitmap(bitmap, dpToPixel(x), dpToPixel(y), paint);
+        canvas.drawBitmap(bitmap, dpToPixel(x), dpToPixel(y), paint);
     }
 
     void check_win(){
@@ -217,5 +218,13 @@ public class MyCanvas extends View{
 
     public float pixelsToDp(float px){
         return px / ((float) getContext().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+    }
+
+    static public float dpToPixel(float dp, Context context){
+        return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT) + 0.5f;
+    }
+
+    static public float pixelsToDp(float px, Context context){
+        return px / ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 }

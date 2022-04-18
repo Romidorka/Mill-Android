@@ -11,9 +11,12 @@ package com.example.mill;
  */
 
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
 
 import java.util.Arrays;
 
@@ -34,6 +37,8 @@ public class Board9 {
     public boolean mustKill=false;
     private int men_count;
     private int men_need_to_fly;
+    private Resources res;
+    private Context ctx;
 
     protected void init(){
         board = new int[24];
@@ -101,7 +106,6 @@ public class Board9 {
         phase = PHASE_PLACING;
         new_mill_cords = -1;
         mustKill = false;
-
     }
 
     Board9(){
@@ -110,6 +114,16 @@ public class Board9 {
         for(byte i=0;i<24;i++){
             board[i]=0;
         }
+    }
+
+    Board9(Resources resources, Context context){
+        init();
+
+        for(byte i=0;i<24;i++){
+            board[i]=0;
+        }
+        this.ctx=context;
+        this.res=resources;
     }
 
     public void place(int player, String cords){
@@ -293,7 +307,7 @@ public class Board9 {
     }
 
     void setRestartButtonCords(){
-        Bitmap bitmapSrc = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.restart);
+        Bitmap bitmapSrc = BitmapFactory.decodeResource(res, R.drawable.restart);
         int width  = Resources.getSystem().getDisplayMetrics().widthPixels;
         int height = Resources.getSystem().getDisplayMetrics().heightPixels;
         Bitmap bitmap;
@@ -304,10 +318,8 @@ public class Board9 {
         } else {
             bitmap = Bitmap.createScaledBitmap(bitmapSrc, croppedWidth-100, croppedWidth-100, false);
         }
-        float x = (width - bitmap.getWidth())/2;
-        float y = (height - bitmap.getHeight())/4+245;
-        restartButtonCords[0] = (width - bitmap.getWidth())/2;
-        restartButtonCords[1] = (height - bitmap.getHeight())/4+245;
+        restartButtonCords[0] = MyCanvas.dpToPixel((width - bitmap.getWidth())/2, ctx);
+        restartButtonCords[1] = MyCanvas.dpToPixel((height - bitmap.getHeight())/4+245, ctx);
     }
 
     public void randomize_board(){
