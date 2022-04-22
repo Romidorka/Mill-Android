@@ -297,9 +297,9 @@ public class Board9 {
 
     public boolean restartButtonCalc(float x, float y){
         System.out.println("==========  RESTART  ==========");
-        System.out.println("X: " + Math.abs(restartButtonCords[0]-x-60));
-        System.out.println("Y: " + Math.abs(restartButtonCords[1]-y));
-        if(Math.abs(restartButtonCords[0]-x-60)<=75 && Math.abs(restartButtonCords[1]-y)<=75) {
+        System.out.println("X: " + Math.abs(restartButtonCords[0]-x-120));
+        System.out.println("Y: " + Math.abs(restartButtonCords[1]-y-250));
+        if(Math.abs(restartButtonCords[0]-x-120)<=20 && Math.abs(restartButtonCords[1]-y-250)<=20) {
             return true;
         }else{
             return false;

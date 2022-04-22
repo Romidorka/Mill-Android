@@ -201,7 +201,7 @@ public class MyCanvas extends View{
                 cords2 = "";
             }
         }catch (Exception e){
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         System.out.println("cords1: " + cords1);
         System.out.println("cords2: " + cords2);

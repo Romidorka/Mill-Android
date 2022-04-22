@@ -28,6 +28,7 @@ public class Rules {
 
     public boolean canPlace(int player, String cords){
         int index = board.cordsToIndex(cords);
+        if(index==-1)return false;
         return board.board[index] == 0 && board.phase == Board9.PHASE_PLACING && !board.mustKill;
     }
 
