@@ -29,6 +29,7 @@ public class Board9 {
     int[] is_mill;
     int[][] neighbors;
     float[] restartButtonCords = {0, 0};
+    float[] homeButtonCords = {0, 0};
 
     int phase = PHASE_PLACING;
     int[] died_dots = {0, 0};
@@ -296,10 +297,21 @@ public class Board9 {
     }
 
     public boolean restartButtonCalc(float x, float y){
-        System.out.println("==========  RESTART  ==========");
-        System.out.println("X: " + Math.abs(restartButtonCords[0]-x-120));
-        System.out.println("Y: " + Math.abs(restartButtonCords[1]-y-250));
+//        System.out.println("==========  RESTART  ==========");
+//        System.out.println("X: " + Math.abs(restartButtonCords[0]-x-120));
+//        System.out.println("Y: " + Math.abs(restartButtonCords[1]-y-250));
         if(Math.abs(restartButtonCords[0]-x-120)<=20 && Math.abs(restartButtonCords[1]-y-250)<=20) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean homeButtonCalc(float x, float y){
+        System.out.println("==========  HOME  ==========");
+        System.out.println("X: " + Math.abs(homeButtonCords[0]-x-60));
+        System.out.println("Y: " + Math.abs(homeButtonCords[1]-y-250));
+        if(Math.abs(homeButtonCords[0]-x-60)<=20 && Math.abs(homeButtonCords[1]-y-250)<=20) {
             return true;
         }else{
             return false;

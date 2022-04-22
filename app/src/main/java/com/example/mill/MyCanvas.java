@@ -3,6 +3,7 @@ package com.example.mill;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -108,7 +109,7 @@ public class MyCanvas extends View{
         }
     }
 
-    void drawRestartButton( Canvas canvas){
+    void drawRestartButton(Canvas canvas){
         Bitmap bitmapSrc = BitmapFactory.decodeResource(getResources(), R.drawable.restart);
         Matrix matrix = new Matrix();
 
@@ -126,6 +127,28 @@ public class MyCanvas extends View{
         float y = (height - bitmap.getHeight())/4+245;
         board.restartButtonCords[0] = x;
         board.restartButtonCords[1] = y;
+
+        canvas.drawBitmap(bitmap, dpToPixel(x), dpToPixel(y), paint);
+    }
+
+    void drawHomeButton(Canvas canvas){
+        Bitmap bitmapSrc = BitmapFactory.decodeResource(getResources(), R.drawable.home);
+        Matrix matrix = new Matrix();
+
+        int width  = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int height = Resources.getSystem().getDisplayMetrics().heightPixels;
+        Bitmap bitmap;
+        int croppedWidth = Math.min(width, height);
+
+        if (croppedWidth >= 128) {
+            bitmap = Bitmap.createScaledBitmap(bitmapSrc, 128, 128, false);
+        } else {
+            bitmap = Bitmap.createScaledBitmap(bitmapSrc, croppedWidth-100, croppedWidth-100, false);
+        }
+        float x = (width - bitmap.getWidth())/2-115;
+        float y = (height - bitmap.getHeight())/4+245;
+        board.homeButtonCords[0] = x;
+        board.homeButtonCords[1] = y;
 
         canvas.drawBitmap(bitmap, dpToPixel(x), dpToPixel(y), paint);
     }
@@ -163,7 +186,7 @@ public class MyCanvas extends View{
             drawDot(pixelsToDp(board.canvasCords[i][0]-60),pixelsToDp(board.canvasCords[i][1]), board.board[i], canvas);
         }
         drawRestartButton(canvas);
-
+        drawHomeButton(canvas);
     }
 
     @Override
@@ -174,6 +197,12 @@ public class MyCanvas extends View{
         if(board.restartButtonCalc(pixelsToDp(posX), pixelsToDp(posY))){
             board.restart();
             invalidate();
+            return super.onTouchEvent(event);
+        }
+
+        if(board.homeButtonCalc(pixelsToDp(posX), pixelsToDp(posY))){
+            Intent main_activity = new Intent(getContext(), MainActivity.class);
+            getContext().startActivity(main_activity);
             return super.onTouchEvent(event);
         }
 
