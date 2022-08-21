@@ -50,7 +50,7 @@ public class Rules {
     public boolean canKill(int player, String cords1, String cords2){
         int index1 = board.cordsToIndex(cords1);
         int index2 = board.cordsToIndex(cords2);
-        return board.board[index1] == player && board.board[index2] != player && board.board[index2] != 0 && board.mustKill;
+        return board.board[index1] == player && board.board[index2] != player && board.board[index2] != 0 && board.is_mill[index2] == 0 && board.mustKill;
 
     }
 }

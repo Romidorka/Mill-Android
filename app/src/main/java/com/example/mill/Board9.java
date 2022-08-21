@@ -215,7 +215,7 @@ public class Board9 {
                 is_mill[index] = 0;
             }
         }
-        if(n[2]!=-1 && n[3]!=-1) {
+        if(n[0]!=-1 &&  n[2]!=-1 && n[3]!=-1) {
             if (board[n[2]] == board[n[3]] && board[n[2]] == board[index] && board[n[0]] != 0) {
                 is_mill[n[2]] = board[n[0]];
                 is_mill[n[3]] = board[n[0]];
